@@ -2126,6 +2126,12 @@ summary::marker {
   .language {
     padding: 20px 20px 0 20px
   }
+  .language__link {
+    color: var(--black)
+  }
+  .wh .language__link._active {
+    background: rgba(0,0,0,.08)
+  }
   .search__input {
     height: 55px;
     padding: 16px 48px 21px 48px
