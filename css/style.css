@@ -113,7 +113,9 @@
   --purple: #EEECFF;
   --bg-accent: #FF6D2C;
   --bg-accent-hover: #E56228;
-  --bg-accent-dis: #FFA780
+  --bg-accent-dis: #FFA780;
+  --bg-secondary: #009387;
+  --bg-inverse: #F3FAFA
 }
 * {
   padding: 0;
@@ -373,8 +375,22 @@ body::after {
   visibility: visible
 }
 .popup-search {
-  background-color: var(--wh);
-  padding: 0
+  padding: 0;
+  opacity: 0;
+  transition: all .3s ease 0s
+}
+.popup-show .popup-search {
+  opacity: 1;
+  visibility: visible
+}
+.popup-search__wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  background-color: var(--wh)
 }
 .popup-search__content {
   max-width: 1278px;
@@ -448,6 +464,9 @@ body::after {
   line-height: 24px;
   letter-spacing: -.5px
 }
+.popup-search__product {
+  padding: 42px 0
+}
 .spollers {
   display: grid;
   gap: 15px
@@ -508,6 +527,58 @@ summary::marker {
   border-radius: .3125rem;
   border: 1px solid #eee
 }
+.tabs {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  -webkit-column-gap: 28px;
+  -moz-column-gap: 28px;
+  column-gap: 28px
+}
+.tabs__baron-h {
+  width: calc(50% - 14px)!important
+}
+.tabs__navigation {
+  height: auto!important;
+  min-height: auto!important;
+  max-height: auto!important
+}
+.tabs__title {
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e7eeec;
+  background: rgba(0,0,0,.02);
+  transition: all .2s ease-in-out 0s
+}
+.tabs__title:not(:last-child) {
+  margin: 0 0 16px 0
+}
+.tabs__title:hover {
+  background: rgba(0,0,0,.04)
+}
+.tabs__title._tab-active {
+  color: var(--wh);
+  background: var(--black);
+  border: 1px solid var(--black)
+}
+.tabs__content {
+  width: calc(50% - 14px);
+  background: var(--purple);
+  padding: 40px 33px 40px 40px;
+  border-radius: 16px
+}
+.tabs__body {
+  font-size: 20px;
+  line-height: 34px
+}
+.tabs__body p:not(:last-child) {
+  margin: 0 0 8px 0
+}
 .baron,
 .baron-h {
   position: relative;
@@ -524,7 +595,7 @@ summary::marker {
   scrollbar-width: none;
   border: 0;
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 18px;
   height: 100%
 }
 .baron__scroller {
@@ -551,9 +622,9 @@ summary::marker {
   bottom: 0;
   right: 0;
   width: 100%;
-  height: 4px;
-  border-radius: 4px;
-  background-color: rgba(0,0,0,.1);
+  height: 14px;
+  border-radius: 100px;
+  background: rgba(0,0,0,.09);
   z-index: 1;
   touch-action: none
 }
@@ -580,9 +651,9 @@ summary::marker {
   top: 0;
   z-index: 2;
   width: 10px;
-  height: 4px;
-  background-color: #b8b8b8;
-  border-radius: 4px;
+  height: 14px;
+  background: rgba(0,0,0,.16);
+  border-radius: 100px;
   transition: all .2s ease-in-out 0s;
   cursor: pointer
 }
@@ -1273,11 +1344,8 @@ summary::marker {
   text-align: center;
   padding-bottom: 32px
 }
-.product__title--top {
-  padding-bottom: 16px
-}
 .product__link--btn {
-  margin: 0 auto
+  margin: 16px auto 0 auto
 }
 .product__slider {
   position: relative;
@@ -1517,28 +1585,28 @@ summary::marker {
 .product__swiper-button-next {
   right: 0
 }
-.product-rating {
+.rating {
   display: flex;
   align-items: center;
   -webkit-column-gap: 8px;
   -moz-column-gap: 8px;
   column-gap: 8px
 }
-.product-rating__block {
+.rating__block {
   display: flex;
   align-items: center;
   -webkit-column-gap: 2px;
   -moz-column-gap: 2px;
   column-gap: 2px
 }
-.product-rating__star::before {
+.rating__star::before {
   font-size: 16px;
   color: #141414
 }
-.product-rating__star.hide::before {
+.rating__star.hide::before {
   color: rgba(0,0,0,.4)
 }
-.product-rating__total {
+.rating__total {
   color: rgba(0,0,0,.4);
   font-size: 13px;
   font-weight: 400;
@@ -1601,7 +1669,7 @@ summary::marker {
   z-index: 2
 }
 .advantages {
-  padding: 60px 0 32px 0
+  padding: 60px 0 80px 0
 }
 .advantages__title--top {
   text-align: center;
@@ -1652,6 +1720,126 @@ summary::marker {
   text-align: center;
   font-size: 20px;
   line-height: 34px
+}
+.info-block {
+  background-color: var(--bg-secondary);
+  color: var(--wh);
+  padding: 0 0 140px 0;
+  margin: 80px 0 0 0
+}
+.info-block__body {
+  background-color: var(--bg-inverse);
+  color: var(--black);
+  padding: 36px;
+  border-radius: 24px;
+  -webkit-transform: translateY(-97px);
+  transform: translateY(-97px);
+  overflow: hidden
+}
+.info-block__title--top {
+  text-align: center;
+  padding: 0 0 20px 0;
+  font-size: 58px;
+  line-height: 58px;
+  letter-spacing: -3.19px
+}
+.reviews__body {
+  padding: 26px 0 0 0
+}
+.reviews__title--top {
+  text-align: center;
+  padding-bottom: 64px
+}
+.reviews__main {
+  position: relative
+}
+.reviews__slider {
+  overflow: visible!important;
+  max-width: 638px;
+  margin: 0 auto
+}
+.reviews__slide {
+  color: var(--black);
+  border-radius: 16px;
+  background: #f3fafa;
+  box-shadow: 0 0 41px 0 rgba(0,0,0,.1);
+  padding: 70px 62px 60px 62px;
+  text-align: center;
+  min-height: 376px
+}
+.reviews__title {
+  color: #222;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -.77px;
+  text-transform: uppercase;
+  padding-bottom: 2px
+}
+.reviews__info {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px
+}
+.reviews__rating {
+  padding: 20px 0
+}
+.reviews__rating .rating__block {
+  margin: 0 auto;
+  -webkit-column-gap: 4px;
+  -moz-column-gap: 4px;
+  column-gap: 4px
+}
+.reviews__rating .rating__star::before {
+  font-size: 20px;
+  color: #fdd84a
+}
+.reviews__rating .rating__star.hide::before {
+  color: rgba(253,216,74,.4)
+}
+.reviews__text {
+  font-size: 20px;
+  line-height: 34px
+}
+.reviews__swiper-button {
+  position: absolute;
+  z-index: 3;
+  top: 38%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-column-gap: 32px;
+  -moz-column-gap: 32px;
+  column-gap: 32px;
+  width: 69px;
+  height: 69px;
+  border-radius: 50%;
+  color: var(--black);
+  background-color: var(--wh);
+  transition: all .2s ease-in-out 0s
+}
+.reviews__swiper-button::before {
+  font-size: 16px
+}
+.reviews__swiper-button .swiper-button-disabled,
+.reviews__swiper-button:disabled {
+  background: rgba(255,255,255,.4)
+}
+.reviews__swiper-button-prev {
+  left: 0
+}
+.reviews__swiper-button-prev::before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+.reviews__swiper-button-next {
+  right: 0
+}
+.reviews__fraction {
+  display: none
+}
+.reviews__fraction--current {
+  color: var(--wh)
 }
 .footer {
   background-color: var(--green)
@@ -1832,7 +2020,7 @@ summary::marker {
   z-index: 10
 }
 .swiper-3d .swiper-slide-shadow {
-  background: rgba(0,0,0,.15)
+  box-shadow: 0 0 30px 0 rgba(0,0,0,.1)
 }
 .swiper-3d .swiper-slide-shadow-left {
   background-image: linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0))
@@ -1938,6 +2126,58 @@ summary::marker {
   .popup-search__body--not {
     padding: 46px 16px 48px 16px
   }
+  .popup-search__product {
+    padding: 42px 16px;
+    overflow: hidden
+  }
+  .tabs {
+    flex-direction: column-reverse;
+    padding: 0 14px 14px 14px
+  }
+  .tabs__baron-h {
+    width: 100%!important
+  }
+  .tabs__navigation {
+    display: flex;
+    align-items: stretch;
+    -webkit-column-gap: 6px;
+    -moz-column-gap: 6px;
+    column-gap: 6px
+  }
+  .tabs__title {
+    background: #f3fafa;
+    min-width: 210px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 8px;
+    padding: 6px 12px
+  }
+  .tabs__title span {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden
+  }
+  .tabs__title:not(:last-child) {
+    margin: 0
+  }
+  .tabs__content {
+    width: 100%;
+    background: 0 0;
+    padding: 0 0 20px 0
+  }
+  .tabs__body {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px
+  }
+  .tabs__baron {
+    height: 392px
+  }
+  .tabs__scroller {
+    padding: 0 12px 0 0!important
+  }
   .header {
     height: 58px;
     padding: 14px 0
@@ -1964,7 +2204,7 @@ summary::marker {
     overflow: auto;
     visibility: hidden;
     opacity: 0;
-    transition: all .5s ease 0s;
+    transition: all .3s ease 0s;
     z-index: 10;
     background-color: var(--wh);
     padding: 88px 0 46px 0
@@ -2026,6 +2266,7 @@ summary::marker {
     display: none
   }
   .menu__link--hover::before {
+    color: var(--black);
     content: "\e914";
     width: 13px;
     height: 13px;
@@ -2187,7 +2428,7 @@ summary::marker {
     right: auto
   }
   .advantages {
-    padding: 32px 0
+    padding: 32px 0 80px 0
   }
   .advantages__item {
     width: 100%;
@@ -2195,6 +2436,53 @@ summary::marker {
   }
   .advantages__row {
     margin: 24px auto 10px auto
+  }
+  .info-block {
+    margin: 94px 0 0 0;
+    padding: 0 0 80px 0
+  }
+  .info-block__body {
+    border-radius: 12px;
+    background-color: var(--purple);
+    padding: 0;
+    -webkit-transform: translateY(-110px);
+    transform: translateY(-110px)
+  }
+  .info-block__title--top {
+    font-size: 36px;
+    line-height: 33px;
+    letter-spacing: -.5px;
+    padding: 27px 14px 20px 14px
+  }
+  .reviews__container {
+    margin-top: -80px
+  }
+  .reviews__slide {
+    padding: 42px 19px
+  }
+  .reviews__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-column-gap: 23px;
+    -moz-column-gap: 23px;
+    column-gap: 23px;
+    padding-top: 32px
+  }
+  .reviews__swiper-button {
+    position: relative;
+    top: auto;
+    width: 38px;
+    height: 38px
+  }
+  .reviews__fraction {
+    display: flex;
+    -webkit-column-gap: 3px;
+    -moz-column-gap: 3px;
+    column-gap: 3px;
+    font-weight: 500;
+    line-height: 30px;
+    color: rgba(255,255,255,.4)
   }
   .footer__main {
     padding: 42px 0 56px 0
@@ -2291,6 +2579,23 @@ summary::marker {
     width: 257px;
     height: 185px
   }
+  .info-block {
+    padding: 0 0 64px 0
+  }
+  .reviews__body {
+    padding: 32px 0 0 0
+  }
+  .reviews__title--top {
+    padding-bottom: 32px
+  }
+  .reviews__slider {
+    padding: 0 24px
+  }
+  .reviews__text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px
+  }
   .footer__logo {
     font-size: 30.692px
   }
@@ -2364,6 +2669,10 @@ summary::marker {
   }
   .product__swiper-button:not(.swiper-button-disabled):hover,
   .product__swiper-button:not(:disabled):hover {
+    background: rgba(255,255,255,.7)
+  }
+  .reviews__swiper-button:not(.swiper-button-disabled):hover,
+  .reviews__swiper-button:not(:disabled):hover {
     background: rgba(255,255,255,.7)
   }
 }

@@ -1113,6 +1113,13 @@
     (() => {
         "use strict";
         const modules_flsModules = {};
+        function functions_getHash() {
+            if (location.hash) return location.hash.replace("#", "");
+        }
+        function setHash(hash) {
+            hash = hash ? `#${hash}` : window.location.href.split("#")[0];
+            history.pushState("", "", hash);
+        }
         let _slideUp = (target, duration = 500, showmore = 0) => {
             if (!target.classList.contains("_slide")) {
                 target.classList.add("_slide");
@@ -1325,6 +1332,99 @@
                 }
             }
         }
+        function tabs() {
+            const tabs = document.querySelectorAll("[data-tabs]");
+            let tabsActiveHash = [];
+            if (tabs.length > 0) {
+                const hash = functions_getHash();
+                if (hash && hash.startsWith("tab-")) tabsActiveHash = hash.replace("tab-", "").split("-");
+                tabs.forEach(((tabsBlock, index) => {
+                    tabsBlock.classList.add("_tab-init");
+                    tabsBlock.setAttribute("data-tabs-index", index);
+                    tabsBlock.addEventListener("click", setTabsAction);
+                    initTabs(tabsBlock);
+                }));
+                let mdQueriesArray = dataMediaQueries(tabs, "tabs");
+                if (mdQueriesArray && mdQueriesArray.length) mdQueriesArray.forEach((mdQueriesItem => {
+                    mdQueriesItem.matchMedia.addEventListener("change", (function() {
+                        setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+                    }));
+                    setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+                }));
+            }
+            function setTitlePosition(tabsMediaArray, matchMedia) {
+                tabsMediaArray.forEach((tabsMediaItem => {
+                    tabsMediaItem = tabsMediaItem.item;
+                    let tabsTitles = tabsMediaItem.querySelector("[data-tabs-titles]");
+                    let tabsTitleItems = tabsMediaItem.querySelectorAll("[data-tabs-title]");
+                    let tabsContent = tabsMediaItem.querySelector("[data-tabs-body]");
+                    let tabsContentItems = tabsMediaItem.querySelectorAll("[data-tabs-item]");
+                    tabsTitleItems = Array.from(tabsTitleItems).filter((item => item.closest("[data-tabs]") === tabsMediaItem));
+                    tabsContentItems = Array.from(tabsContentItems).filter((item => item.closest("[data-tabs]") === tabsMediaItem));
+                    tabsContentItems.forEach(((tabsContentItem, index) => {
+                        if (matchMedia.matches) {
+                            tabsContent.append(tabsTitleItems[index]);
+                            tabsContent.append(tabsContentItem);
+                            tabsMediaItem.classList.add("_tab-spoller");
+                        } else {
+                            tabsTitles.append(tabsTitleItems[index]);
+                            tabsMediaItem.classList.remove("_tab-spoller");
+                        }
+                    }));
+                }));
+            }
+            function initTabs(tabsBlock) {
+                let tabsTitles = tabsBlock.querySelectorAll("[data-tabs-titles]>*");
+                let tabsContent = tabsBlock.querySelectorAll("[data-tabs-body]>*");
+                const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
+                const tabsActiveHashBlock = tabsActiveHash[0] == tabsBlockIndex;
+                if (tabsActiveHashBlock) {
+                    const tabsActiveTitle = tabsBlock.querySelector("[data-tabs-titles]>._tab-active");
+                    tabsActiveTitle ? tabsActiveTitle.classList.remove("_tab-active") : null;
+                }
+                if (tabsContent.length) tabsContent.forEach(((tabsContentItem, index) => {
+                    tabsTitles[index].setAttribute("data-tabs-title", "");
+                    tabsContentItem.setAttribute("data-tabs-item", "");
+                    if (tabsActiveHashBlock && index == tabsActiveHash[1]) tabsTitles[index].classList.add("_tab-active");
+                    tabsContentItem.hidden = !tabsTitles[index].classList.contains("_tab-active");
+                }));
+            }
+            function setTabsStatus(tabsBlock) {
+                let tabsTitles = tabsBlock.querySelectorAll("[data-tabs-title]");
+                let tabsContent = tabsBlock.querySelectorAll("[data-tabs-item]");
+                const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
+                function isTabsAnamate(tabsBlock) {
+                    if (tabsBlock.hasAttribute("data-tabs-animate")) return tabsBlock.dataset.tabsAnimate > 0 ? Number(tabsBlock.dataset.tabsAnimate) : 500;
+                }
+                const tabsBlockAnimate = isTabsAnamate(tabsBlock);
+                if (tabsContent.length > 0) {
+                    const isHash = tabsBlock.hasAttribute("data-tabs-hash");
+                    tabsContent = Array.from(tabsContent).filter((item => item.closest("[data-tabs]") === tabsBlock));
+                    tabsTitles = Array.from(tabsTitles).filter((item => item.closest("[data-tabs]") === tabsBlock));
+                    tabsContent.forEach(((tabsContentItem, index) => {
+                        if (tabsTitles[index].classList.contains("_tab-active")) {
+                            if (tabsBlockAnimate) _slideDown(tabsContentItem, tabsBlockAnimate); else tabsContentItem.hidden = false;
+                            if (isHash && !tabsContentItem.closest(".popup")) setHash(`tab-${tabsBlockIndex}-${index}`);
+                        } else if (tabsBlockAnimate) _slideUp(tabsContentItem, tabsBlockAnimate); else tabsContentItem.hidden = true;
+                    }));
+                }
+            }
+            function setTabsAction(e) {
+                const el = e.target;
+                if (el.closest("[data-tabs-title]")) {
+                    const tabTitle = el.closest("[data-tabs-title]");
+                    const tabsBlock = tabTitle.closest("[data-tabs]");
+                    if (!tabTitle.classList.contains("_tab-active") && !tabsBlock.querySelector("._slide")) {
+                        let tabActiveTitle = tabsBlock.querySelectorAll("[data-tabs-title]._tab-active");
+                        tabActiveTitle.length ? tabActiveTitle = Array.from(tabActiveTitle).filter((item => item.closest("[data-tabs]") === tabsBlock)) : null;
+                        tabActiveTitle.length ? tabActiveTitle[0].classList.remove("_tab-active") : null;
+                        tabTitle.classList.add("_tab-active");
+                        setTabsStatus(tabsBlock);
+                    }
+                    e.preventDefault();
+                }
+            }
+        }
         function menuInit() {
             if (document.querySelector(".icon-menu")) document.addEventListener("click", (function(e) {
                 if (bodyLockStatus && e.target.closest(".icon-menu")) {
@@ -1382,17 +1482,6 @@
             }
         }
         var core = __webpack_require__(747);
-        const baronElementsH = document.querySelectorAll(".baron-h");
-        baronElementsH.forEach((function(element) {
-            window.addEventListener("load", (function() {
-                core({
-                    direction: "h",
-                    root: element,
-                    scroller: ".baron-h__scroller",
-                    bar: ".baron-h__bar"
-                }).autoUpdate();
-            }));
-        }));
         const baronElements = document.querySelectorAll(".baron");
         baronElements.forEach((function(element) {
             window.addEventListener("load", (function() {
@@ -1403,6 +1492,19 @@
                 }).autoUpdate();
             }));
         }));
+        const baronElementsH = document.querySelectorAll(".baron-h");
+        function initBaron() {
+            if (window.matchMedia("(max-width: 991.98px)").matches) baronElementsH.forEach((function(element) {
+                core({
+                    direction: "h",
+                    root: element,
+                    scroller: ".baron-h__scroller",
+                    bar: ".baron-h__bar"
+                }).autoUpdate();
+            }));
+        }
+        window.addEventListener("load", initBaron);
+        window.addEventListener("resize", initBaron);
         class Popup {
             constructor(options) {
                 let config = {
@@ -1887,6 +1989,9 @@
             };
             animate();
         }
+        function utils_getSlideTransformEl(slideEl) {
+            return slideEl.querySelector(".swiper-slide-transform") || slideEl.shadowRoot && slideEl.shadowRoot.querySelector(".swiper-slide-transform") || slideEl;
+        }
         function utils_elementChildren(element, selector) {
             if (selector === void 0) selector = "";
             return [ ...element.children ].filter((el => el.matches(selector)));
@@ -1949,6 +2054,14 @@
                 parent = parent.parentElement;
             }
             return parents;
+        }
+        function utils_elementTransitionEnd(el, callback) {
+            function fireCallBack(e) {
+                if (e.target !== el) return;
+                callback.call(el, e);
+                el.removeEventListener("transitionend", fireCallBack);
+            }
+            if (callback) el.addEventListener("transitionend", fireCallBack);
         }
         function utils_elementOuterSize(el, size, includeMargins) {
             const window = ssr_window_esm_getWindow();
@@ -4983,6 +5096,179 @@
                 destroy
             });
         }
+        function effect_target_effectTarget(effectParams, slideEl) {
+            const transformEl = utils_getSlideTransformEl(slideEl);
+            if (transformEl !== slideEl) {
+                transformEl.style.backfaceVisibility = "hidden";
+                transformEl.style["-webkit-backface-visibility"] = "hidden";
+            }
+            return transformEl;
+        }
+        function effect_virtual_transition_end_effectVirtualTransitionEnd(_ref) {
+            let {swiper, duration, transformElements, allSlides} = _ref;
+            const {activeIndex} = swiper;
+            const getSlide = el => {
+                if (!el.parentElement) {
+                    const slide = swiper.slides.filter((slideEl => slideEl.shadowRoot && slideEl.shadowRoot === el.parentNode))[0];
+                    return slide;
+                }
+                return el.parentElement;
+            };
+            if (swiper.params.virtualTranslate && duration !== 0) {
+                let eventTriggered = false;
+                let transitionEndTarget;
+                if (allSlides) transitionEndTarget = transformElements; else transitionEndTarget = transformElements.filter((transformEl => {
+                    const el = transformEl.classList.contains("swiper-slide-transform") ? getSlide(transformEl) : transformEl;
+                    return swiper.getSlideIndex(el) === activeIndex;
+                }));
+                transitionEndTarget.forEach((el => {
+                    utils_elementTransitionEnd(el, (() => {
+                        if (eventTriggered) return;
+                        if (!swiper || swiper.destroyed) return;
+                        eventTriggered = true;
+                        swiper.animating = false;
+                        const evt = new window.CustomEvent("transitionend", {
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        swiper.wrapperEl.dispatchEvent(evt);
+                    }));
+                }));
+            }
+        }
+        function create_shadow_createShadow(suffix, slideEl, side) {
+            const shadowClass = `swiper-slide-shadow${side ? `-${side}` : ""}${suffix ? ` swiper-slide-shadow-${suffix}` : ""}`;
+            const shadowContainer = utils_getSlideTransformEl(slideEl);
+            let shadowEl = shadowContainer.querySelector(`.${shadowClass.split(" ").join(".")}`);
+            if (!shadowEl) {
+                shadowEl = utils_createElement("div", shadowClass.split(" "));
+                shadowContainer.append(shadowEl);
+            }
+            return shadowEl;
+        }
+        function effect_init_effectInit(params) {
+            const {effect, swiper, on, setTranslate, setTransition, overwriteParams, perspective, recreateShadows, getEffectParams} = params;
+            on("beforeInit", (() => {
+                if (swiper.params.effect !== effect) return;
+                swiper.classNames.push(`${swiper.params.containerModifierClass}${effect}`);
+                if (perspective && perspective()) swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
+                const overwriteParamsResult = overwriteParams ? overwriteParams() : {};
+                Object.assign(swiper.params, overwriteParamsResult);
+                Object.assign(swiper.originalParams, overwriteParamsResult);
+            }));
+            on("setTranslate", (() => {
+                if (swiper.params.effect !== effect) return;
+                setTranslate();
+            }));
+            on("setTransition", ((_s, duration) => {
+                if (swiper.params.effect !== effect) return;
+                setTransition(duration);
+            }));
+            on("transitionEnd", (() => {
+                if (swiper.params.effect !== effect) return;
+                if (recreateShadows) {
+                    if (!getEffectParams || !getEffectParams().slideShadows) return;
+                    swiper.slides.forEach((slideEl => {
+                        slideEl.querySelectorAll(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").forEach((shadowEl => shadowEl.remove()));
+                    }));
+                    recreateShadows();
+                }
+            }));
+            let requireUpdateOnVirtual;
+            on("virtualUpdate", (() => {
+                if (swiper.params.effect !== effect) return;
+                if (!swiper.slides.length) requireUpdateOnVirtual = true;
+                requestAnimationFrame((() => {
+                    if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
+                        setTranslate();
+                        requireUpdateOnVirtual = false;
+                    }
+                }));
+            }));
+        }
+        function EffectCards(_ref) {
+            let {swiper, extendParams, on} = _ref;
+            extendParams({
+                cardsEffect: {
+                    slideShadows: true,
+                    rotate: true,
+                    perSlideRotate: 2,
+                    perSlideOffset: 8
+                }
+            });
+            const setTranslate = () => {
+                const {slides, activeIndex, rtlTranslate: rtl} = swiper;
+                const params = swiper.params.cardsEffect;
+                const {startTranslate, isTouched} = swiper.touchEventsData;
+                const currentTranslate = rtl ? -swiper.translate : swiper.translate;
+                for (let i = 0; i < slides.length; i += 1) {
+                    const slideEl = slides[i];
+                    const slideProgress = slideEl.progress;
+                    const progress = Math.min(Math.max(slideProgress, -4), 4);
+                    let offset = slideEl.swiperSlideOffset;
+                    if (swiper.params.centeredSlides && !swiper.params.cssMode) swiper.wrapperEl.style.transform = `translateX(${swiper.minTranslate()}px)`;
+                    if (swiper.params.centeredSlides && swiper.params.cssMode) offset -= slides[0].swiperSlideOffset;
+                    let tX = swiper.params.cssMode ? -offset - swiper.translate : -offset;
+                    let tY = 0;
+                    const tZ = -100 * Math.abs(progress);
+                    let scale = 1;
+                    let rotate = -params.perSlideRotate * progress;
+                    let tXAdd = params.perSlideOffset - Math.abs(progress) * .75;
+                    const slideIndex = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.from + i : i;
+                    const isSwipeToNext = (slideIndex === activeIndex || slideIndex === activeIndex - 1) && progress > 0 && progress < 1 && (isTouched || swiper.params.cssMode) && currentTranslate < startTranslate;
+                    const isSwipeToPrev = (slideIndex === activeIndex || slideIndex === activeIndex + 1) && progress < 0 && progress > -1 && (isTouched || swiper.params.cssMode) && currentTranslate > startTranslate;
+                    if (isSwipeToNext || isSwipeToPrev) {
+                        const subProgress = (1 - Math.abs((Math.abs(progress) - .5) / .5)) ** .5;
+                        rotate += -28 * progress * subProgress;
+                        scale += -.5 * subProgress;
+                        tXAdd += 96 * subProgress;
+                        tY = `${-25 * subProgress * Math.abs(progress)}%`;
+                    }
+                    if (progress < 0) tX = `calc(${tX}px ${rtl ? "-" : "+"} (${tXAdd * Math.abs(progress)}%))`; else if (progress > 0) tX = `calc(${tX}px ${rtl ? "-" : "+"} (-${tXAdd * Math.abs(progress)}%))`; else tX = `${tX}px`;
+                    if (!swiper.isHorizontal()) {
+                        const prevY = tY;
+                        tY = tX;
+                        tX = prevY;
+                    }
+                    const scaleString = progress < 0 ? `${1 + (1 - scale) * progress}` : `${1 - (1 - scale) * progress}`;
+                    const transform = `\n        translate3d(${tX}, ${tY}, ${tZ}px)\n        rotateZ(${params.rotate ? rtl ? -rotate : rotate : 0}deg)\n        scale(${scaleString})\n      `;
+                    if (params.slideShadows) {
+                        let shadowEl = slideEl.querySelector(".swiper-slide-shadow");
+                        if (!shadowEl) shadowEl = create_shadow_createShadow("cards", slideEl);
+                        if (shadowEl) shadowEl.style.opacity = Math.min(Math.max((Math.abs(progress) - .5) / .5, 0), 1);
+                    }
+                    slideEl.style.zIndex = -Math.abs(Math.round(slideProgress)) + slides.length;
+                    const targetEl = effect_target_effectTarget(params, slideEl);
+                    targetEl.style.transform = transform;
+                }
+            };
+            const setTransition = duration => {
+                const transformElements = swiper.slides.map((slideEl => utils_getSlideTransformEl(slideEl)));
+                transformElements.forEach((el => {
+                    el.style.transitionDuration = `${duration}ms`;
+                    el.querySelectorAll(".swiper-slide-shadow").forEach((shadowEl => {
+                        shadowEl.style.transitionDuration = `${duration}ms`;
+                    }));
+                }));
+                effect_virtual_transition_end_effectVirtualTransitionEnd({
+                    swiper,
+                    duration,
+                    transformElements
+                });
+            };
+            effect_init_effectInit({
+                effect: "cards",
+                swiper,
+                on,
+                setTranslate,
+                setTransition,
+                perspective: () => true,
+                overwriteParams: () => ({
+                    watchSlidesProgress: true,
+                    virtualTranslate: !swiper.params.cssMode
+                })
+            });
+        }
         function initSliders() {
             var productSliders = document.querySelectorAll(".product__slider");
             if (productSliders) productSliders.forEach((function(productSlider) {
@@ -5021,6 +5307,40 @@
                     on: {}
                 });
             }));
+            var reviewsSlider = document.querySelectorAll(".reviews__slider");
+            if (reviewsSlider) new swiper_core_Swiper(".reviews__slider", {
+                modules: [ Navigation, EffectCards ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1,
+                spaceBetween: 0,
+                speed: 400,
+                effect: "cards",
+                loop: true,
+                grabCursor: true,
+                centeredSlides: true,
+                cardsEffect: {
+                    perSlideOffset: 10,
+                    perSlideRotate: 0,
+                    rotate: true,
+                    slideShadows: true
+                },
+                navigation: {
+                    prevEl: ".reviews__swiper-button-prev",
+                    nextEl: ".reviews__swiper-button-next"
+                },
+                on: {
+                    init: function(swiper) {
+                        const allSlides = document.querySelector(".reviews__fraction--all");
+                        const allSlidesItems = document.querySelectorAll(".reviews__slide:not(.swiper-slide-duplicate)");
+                        allSlides.innerHTML = allSlidesItems.length;
+                    },
+                    slideChange: function(swiper) {
+                        const currentSlide = document.querySelector(".reviews__fraction--current");
+                        currentSlide.innerHTML = swiper.realIndex + 1;
+                    }
+                }
+            });
         }
         window.addEventListener("load", (function(e) {
             initSliders();
@@ -5230,6 +5550,7 @@
         window["FLS"] = false;
         menuInit();
         spollers();
+        tabs();
         headerScroll();
     })();
 })();
