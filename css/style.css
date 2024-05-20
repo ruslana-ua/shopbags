@@ -4180,6 +4180,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     border-radius: 0;
     padding: 55px 16px
   }
+  .popup-search__content {
+    padding: 0
+  }
   .popup-search__body {
     flex-direction: column;
     padding: 18px 16px 20px 16px
