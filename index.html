@@ -6,10 +6,10 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240520130751">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240521112329">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 </head>
 
 <body>
@@ -1973,10 +1973,10 @@
 						</div>
 					</div>
 				</div>
-				<form action="" novalidate class="popup__form form">
+				<form action="" class="popup__form form">
 					<div class="form__list">
 						<div class="form__data">
-							<select data-error="Оберіть розмір" name="form[]" data-class-modif="form">
+							<select data-error="Оберіть розмір" data-required data-validate name="form[]" data-class-modif="form">
 								<option value="" disabled selected hidden>Розмір*</option>
 								<option value="1">XXS</option>
 								<option value="2">XS</option>
@@ -1986,12 +1986,15 @@
 								<option value="4">XL</option>
 								<option value="4">XXL</option>
 							</select>
+							<div class="form__label">Розмір*</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Мінімум 2 символи" required="true" type="tel" name="name" placeholder="Імʼя" class="form__input">
+							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" placeholder="Імʼя" class="form__input">
+							<div class="form__label">Імʼя</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Введіть коректний номер телефону" required="true" type="tel" name="phone" placeholder="+38 (___) ___-__-__" class="form__input">
+							<input data-error="Введіть коректний номер телефону" data-required="phone" data-validate type="tel" name="phone" placeholder="+38 (___) ___-__-__" class="form__input phone-mask">
+							<div class="form__label">Телефон*</div>
 						</div>
 					</div>
 					<button type="submit" class="form__sent btn">Придбати</button>
@@ -1999,7 +2002,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240520130751"></script>
+	<script src="js/app.min.js?_v=20240521112329"></script>
 </body>
 
 </html>
