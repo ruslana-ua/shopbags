@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240521112329">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240522204905">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -211,8 +211,8 @@
 								<div class="contacts-page__block">
 									<span class="contacts-page__discount discount">Знижка 10% на наступне замовлення при підписці на телеграм канал</span>
 									<div class="contacts-page__bottom">
-										<a href="" class="contacts-page__button btn btn_wh _icon-telegram">Підписатись на наш канал</a>
-										<a href="" class="contacts-page__button btn btn_wh _icon-telegram">Написати в телеграм</a>
+										<a data-popup="#popup-success" href="" class="contacts-page__button btn btn_wh _icon-telegram">Підписатись на наш канал</a>
+										<a data-popup="#popup-success-mail" href="" class="contacts-page__button btn btn_wh _icon-telegram">Написати в телеграм</a>
 									</div>
 								</div>
 							</div>
@@ -912,7 +912,7 @@
 	<div id="popup-callback" aria-hidden="true" class="popup">
 		<div class="popup__wrapper">
 			<div class="popup__content popup__content--quick-order">
-				<button data-close="" type="button" class="popup__close _icon-close"></button>
+				<button data-close type="button" class="popup__close _icon-close"></button>
 				<h4 class="popup__title">Замовити зворотній дзвінок</h4>
 				<div class="popup__text">
 					<p>Вкажіть свої контакти і ми зателефонуємо найближчим часом</p>
@@ -920,11 +920,11 @@
 				<form action="" class="popup__form form">
 					<div class="form__list">
 						<div class="form__data">
-							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" placeholder="Імʼя" class="form__input">
+							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" class="form__input">
 							<div class="form__label">Імʼя</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Введіть коректний номер телефону" data-required="phone" data-validate type="tel" name="phone" placeholder="+38 (___) ___-__-__" class="form__input phone-mask">
+							<input data-error="Введіть коректний номер телефону" data-required="phone" data-validate type="tel" name="phone" class="form__input phone-mask">
 							<div class="form__label">Телефон*</div>
 						</div>
 						<div class="form__data">
@@ -940,7 +940,7 @@
 	<div id="popup-mail" aria-hidden="true" class="popup">
 		<div class="popup__wrapper">
 			<div class="popup__content popup__content--quick-order">
-				<button data-close="" type="button" class="popup__close _icon-close"></button>
+				<button data-close type="button" class="popup__close _icon-close"></button>
 				<h4 class="popup__title">Надіслати повідомлення на пошту</h4>
 				<div class="popup__text">
 					<p>Заповніть форму вказавши вашу електронну адресу та ми відповімо вам найближчим часом</p>
@@ -948,11 +948,11 @@
 				<form action="" class="popup__form form">
 					<div class="form__list">
 						<div class="form__data">
-							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" placeholder="Імʼя" class="form__input">
+							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" class="form__input">
 							<div class="form__label">Імʼя</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Поле є обовʼязковим для заповнення" data-required="email" data-validate type="email" name="phone" placeholder="E-mail*" class="form__input">
+							<input data-error="Поле є обовʼязковим для заповнення" data-required="email" data-validate type="email" name="phone" class="form__input">
 							<div class="form__label">E-mail*</div>
 						</div>
 						<div class="form__data">
@@ -965,7 +965,43 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240521112329"></script>
+	<div id="popup-success" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content popup__content--quick-order">
+				<button data-close type="button" class="popup__close _icon-close"></button>
+				<div class="block-page__icon lazy_image">
+					<img data-src="img/icons/icon-chat.svg" alt="" loading="lazy" src="img/icons/icon-chat.svg" data-ll-status="loaded" class="_lazy-loaded">
+				</div>
+				<h4 class="popup__title">Ваш запит успішно відправлено! Очікуйте дзвінок менеджера найближчим часом.</h4>
+				<div class="popup__contacts contacts-page__block">
+					<div class="contacts-page__bottom">
+						<a data-popup="#popup-success" href="" class="contacts-page__button btn btn_wh _icon-telegram">Підписатись на наш канал</a>
+						<a href="" class="contacts-page__button btn btn_wh _icon-telegram">Написати в телеграм</a>
+					</div>
+					<span class="contacts-page__discount discount">Знижка 10% на наступне замовлення при підписці на телеграм канал</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="popup-success-mail" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content popup__content--quick-order">
+				<button data-close type="button" class="popup__close _icon-close"></button>
+				<div class="block-page__icon lazy_image">
+					<img data-src="img/icons/icon-chat.svg" alt="" loading="lazy" src="img/icons/icon-chat.svg" data-ll-status="loaded" class="_lazy-loaded">
+				</div>
+				<h4 class="popup__title">Ваш запит успішно відправлено! Очікуйте відповіть від менеджера найближчим часом.</h4>
+				<div class="popup__contacts contacts-page__block">
+					<div class="contacts-page__bottom">
+						<a data-popup="#popup-success" href="" class="contacts-page__button btn btn_wh _icon-telegram">Підписатись на наш канал</a>
+						<a href="" class="contacts-page__button btn btn_wh _icon-telegram">Написати в телеграм</a>
+					</div>
+					<span class="contacts-page__discount discount">Знижка 10% на наступне замовлення при підписці на телеграм канал</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20240522204905"></script>
 </body>
 
 </html>

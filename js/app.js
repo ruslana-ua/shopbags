@@ -5366,24 +5366,25 @@
         }) {
             document.body.addEventListener("focusin", (function(e) {
                 const targetElement = e.target;
-                if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA") {
+                if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA" || targetElement.tagName === "SELECT") {
                     if (!targetElement.hasAttribute("data-no-focus-classes")) {
                         targetElement.classList.add("_form-focus");
                         targetElement.parentElement.classList.add("_form-focus");
                     }
                     formValidate.removeError(targetElement);
-                    targetElement.parentElement.classList.add("_form-valid");
+                    if (targetElement.value) targetElement.parentElement.classList.add("_form-valid"); else targetElement.parentElement.classList.remove("_form-valid");
                     targetElement.hasAttribute("data-validate") ? formValidate.removeError(targetElement) : null;
                 }
             }));
             document.body.addEventListener("focusout", (function(e) {
                 const targetElement = e.target;
-                if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA") {
+                if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA" || targetElement.tagName === "SELECT") {
                     if (!targetElement.hasAttribute("data-no-focus-classes")) {
                         targetElement.classList.remove("_form-focus");
                         targetElement.parentElement.classList.remove("_form-focus");
                     }
                     targetElement.hasAttribute("data-validate") ? formValidate.validateInput(targetElement) : null;
+                    if (targetElement.value) targetElement.parentElement.classList.add("_form-valid"); else targetElement.parentElement.classList.remove("_form-valid");
                 }
             }));
             if (options.viewPass) document.addEventListener("click", (function(e) {

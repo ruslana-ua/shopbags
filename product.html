@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240521112329">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240522204905">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -180,7 +180,7 @@
 						<div class="breadcrumb__row">
 							<a href="" class="breadcrumb__back _icon-arrow-sel">Назад</a>
 							<div class="breadcrumb__nav">
-								<a href="" class="breadcrumb__product breadcrumb__product--prev _icon-arrow-btn"></a>
+								<a href="" class="breadcrumb__product breadcrumb__product--modrev _icon-arrow-btn"></a>
 								<a href="" class="breadcrumb__product breadcrumb__product--next _icon-arrow-btn"></a>
 							</div>
 						</div>
@@ -258,7 +258,7 @@
 							</div>
 							<div class="product-info__bottom">
 								<button data-popup="#popup-quick-order" type="button" class="product-info__button product-info__button--mob btn">Швидке замовлення</button>
-								<button type="submit" class="product-info__button btn btn_wh _icon-cart">Додати у кошик</button>
+								<button data-popup="#popup-cart" type="submit" class="product-info__button btn btn_wh _icon-cart">Додати у кошик</button>
 							</div>
 							<div class="product-info__rating rating">
 								<div class="rating__block">
@@ -962,7 +962,7 @@
 									<span>Сховати відгуки</span>
 								</div>
 							</button>
-							<a href="" class="product-reviews__button">Залишити відгук</a>
+							<a data-popup="#popup-feedback" href="" class="product-reviews__button">Залишити відгук</a>
 						</div>
 					</div>
 				</div>
@@ -1659,7 +1659,7 @@
 	<div id="popup-quick-order" aria-hidden="true" class="popup">
 		<div class="popup__wrapper">
 			<div class="popup__content popup__content--quick-order">
-				<button data-close="" type="button" class="popup__close _icon-close"></button>
+				<button data-close type="button" class="popup__close _icon-close"></button>
 				<h4 class="popup__title">Швидка покупка</h4>
 				<div class="popup__quick-order quick-order">
 					<div class="quick-order__image ibg lazy_image">
@@ -1686,7 +1686,7 @@
 					<div class="form__list">
 						<div class="form__data">
 							<select data-error="Оберіть розмір" data-required data-validate name="form[]" data-class-modif="form">
-								<option value="" disabled selected hidden>Розмір*</option>
+								<option value="" disabled selected hidden></option>
 								<option value="1">XXS</option>
 								<option value="2">XS</option>
 								<option value="3" data-class="disabled">S</option>
@@ -1698,11 +1698,11 @@
 							<div class="form__label">Розмір*</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" placeholder="Імʼя" class="form__input">
+							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" class="form__input">
 							<div class="form__label">Імʼя</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Введіть коректний номер телефону" data-required="phone" data-validate type="tel" name="phone" placeholder="+38 (___) ___-__-__" class="form__input phone-mask">
+							<input data-error="Введіть коректний номер телефону" data-required="phone" data-validate type="tel" name="phone" class="form__input phone-mask">
 							<div class="form__label">Телефон*</div>
 						</div>
 					</div>
@@ -1711,7 +1711,93 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240521112329"></script>
+	<div id="popup-feedback" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close _icon-close"></button>
+				<h4 class="popup__title">Залишити відгук</h4>
+				<form action="" class="popup__form form form-feedback">
+					<div class="form__list">
+						<div class="form__data">
+							<div class="form__star-rating star-rating">
+								<input type="radio" name="rating" data-required data-validate class="star-rating__input" id="star-rating-5" value="5">
+								<label class="star-rating__ico _icon-star" for="star-rating-5" title="5 out of 5 stars"></label>
+								<input type="radio" name="rating" data-required data-validate class="star-rating__input" id="star-rating-4" value="4">
+								<label class="star-rating__ico _icon-star" for="star-rating-4" title="4 out of 5 stars"></label>
+								<input type="radio" name="rating" data-required data-validate class="star-rating__input" id="star-rating-3" value="3">
+								<label class="star-rating__ico _icon-star" for="star-rating-3" title="3 out of 5 stars"></label>
+								<input type="radio" name="rating" data-required data-validate class="star-rating__input" id="star-rating-2" value="2">
+								<label class="star-rating__ico _icon-star" for="star-rating-2" title="2 out of 5 stars"></label>
+								<input type="radio" name="rating" data-error="Залиште свою оцінку" data-required data-validate class="star-rating__input" id="star-rating-1" value="1">
+								<label class="star-rating__ico _icon-star" for="star-rating-1" title="1 out of 5 stars"></label>
+							</div>
+							<div class="form__label form__label--show">Ваша оцінка*</div>
+						</div>
+						<div class="form__data">
+							<textarea class="form__textarea" name="comment" placeholder="Введіть ваш коментар"></textarea>
+							<div class="form__label form__label--show">Коментар</div>
+						</div>
+						<div class="form__data">
+							<textarea class="form__textarea" name="advantages" placeholder="Введіть ваш коментар стосовно переваг"></textarea>
+							<div class="form__label form__label--show">Переваги</div>
+						</div>
+						<div class="form__data">
+							<textarea class="form__textarea" name="disadvantages" placeholder="Введіть ваш коментар стосовно недоліків"></textarea>
+							<div class="form__label form__label--show">Недоліки</div>
+						</div>
+					</div>
+					<button type="submit" class="form__sent btn">Залишити відгук</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="popup-cart" aria-hidden="true" class="popup">
+		<div class="popup__wrapper popup__wrapper--mob">
+			<div class="popup__content popup__content--cart">
+				<button data-close type="button" class="popup__close _icon-close"></button>
+				<div class="popup__cart--wrap">
+					<div class="popup__icon lazy_image">
+						<img data-src="img/icons/icon-cart.svg" alt="">
+					</div>
+					<h4 class="popup__title">Товар додано у кошик</h4>
+				</div>
+				<div class="popup__cart cart-popup">
+					<div class="cart-popup__wrapper">
+						<div class="details__item">
+							<div class="details__image lazy_image ibg">
+								<img data-src="img/products/product_02.webp" alt="">
+							</div>
+							<div class="details__content">
+								<div class="details__block">
+									<div class="details__column">
+										<div class="details__title">Назва товару</div>
+										<div class="details__copy product__copy">
+											<div class="product__code--wrap">
+												<div class="product__code--text">Код: </div>
+												<div class="product__code">1533277</div>
+											</div>
+											<button type="button" class="product__icon _icon-copy"></button>
+										</div>
+									</div>
+									<div class="details__column details__column--last">
+										<div class="product__price">803 ₴</div>
+										<div class="details__row">
+											<div class="product__price--old">1220 ₴</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="cart-popup__row">
+						<button data-close type="button" class="cart-popup__button btn btn_wh">Продовжити покупки</button>
+						<a href="" class="cart-popup__button btn">Оформити замовлення</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20240522204905"></script>
 </body>
 
 </html>
