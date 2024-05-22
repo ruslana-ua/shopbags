@@ -2021,6 +2021,9 @@ summary::marker {
 .product__code--text {
   color: rgba(0,0,0,.4)
 }
+.product__code {
+  text-decoration: none
+}
 .product__icon {
   display: flex;
   align-items: center;
@@ -3213,7 +3216,7 @@ summary::marker {
 }
 .spollers-total__form {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   -webkit-column-gap: 16px;
   -moz-column-gap: 16px;
