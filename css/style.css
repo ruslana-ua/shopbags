@@ -5730,7 +5730,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .popup__content--cart {
     max-width: 100%;
-    flex: 0 0 auto
+    flex: 0 0 auto!important
   }
   .popup__title {
     text-align: center
