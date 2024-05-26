@@ -437,6 +437,7 @@ textarea._form-error {
 }
 textarea {
   height: 128px;
+  padding: 0 0 2px 0;
   resize: none
 }
 input[placeholder]:not([data-placeholder-nohiden])::-webkit-input-placeholder {
@@ -917,6 +918,9 @@ body::after {
 .form {
   padding: 16px 0 0 0
 }
+.form-feedback {
+  padding: 44px 0 0 0
+}
 .form__list {
   padding: 0 0 54px 0
 }
@@ -944,6 +948,12 @@ body::after {
   -webkit-transform: translateY(-20px);
   transform: translateY(-20px)
 }
+.form__data--mod {
+  margin: 44px 0 24px 0
+}
+.form__data--mod:not(:last-child) {
+  margin: 44px 0 24px 0
+}
 .form__label {
   z-index: 2;
   position: absolute;
@@ -957,8 +967,8 @@ body::after {
   line-height: 21px
 }
 .form__label--show {
-  -webkit-transform: translateY(0)!important;
-  transform: translateY(0)!important;
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
   top: 0;
   bottom: auto;
   color: var(--black)
@@ -972,7 +982,7 @@ body::after {
 .star-rating {
   position: relative;
   display: inline-block;
-  padding-top: 20px
+  padding-top: 2px
 }
 .star-rating::after {
   content: "";
@@ -2118,13 +2128,14 @@ summary::marker {
   flex-direction: column;
   justify-content: space-between;
   min-height: 202px;
-  row-gap: 36px;
+  row-gap: 16px;
   padding-top: 10px
 }
 .product__row {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 8px;
   min-height: 62px
 }
 .product__title {
@@ -2157,11 +2168,7 @@ summary::marker {
   color: rgba(0,0,0,.4)
 }
 .product__code {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  word-break: break-all
+  color: #000
 }
 .product__icon {
   display: flex;
@@ -3714,19 +3721,6 @@ summary::marker {
 .sort__button {
   margin-left: auto
 }
-.banner-catalog {
-  width: calc(50% - 12px);
-  background: var(--black);
-  color: var(--wh);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 40px
-}
-.banner-catalog__title {
-  padding-bottom: 32px
-}
 .filters {
   max-width: 468px;
   position: fixed;
@@ -5064,8 +5058,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 .lg-outer .lg-thumb-item img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
   display: block
 }
 .lg-outer.lg-can-toggle .lg-item {
@@ -5475,7 +5469,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     visibility: visible
   }
   .product__slider {
-    overflow: visible!important
+    overflow: visible!important;
+    padding: 0!important
   }
   .product__swiper-button {
     display: none
@@ -5738,10 +5733,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .catalog__wrapper .product__wrap {
     width: calc(50% - 13px)
   }
-  .banner-catalog {
-    width: 100%;
-    min-height: 330px
-  }
   .filters {
     max-width: 100%
   }
@@ -5790,6 +5781,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 @media (max-width:47.99875em) {
   [class*=__container] {
     padding: 0 1rem
+  }
+  .btn {
+    padding: 12px 14px
   }
   textarea {
     height: 191px
@@ -5902,6 +5896,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .product__image {
     padding-bottom: 100%
+  }
+  .product__main {
+    row-gap: 10px
   }
   .product__price--wrap {
     padding: 10px 0 16px 0
@@ -6228,8 +6225,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .catalog__wrapper .product__wrap {
     width: 100%
   }
-  .banner-catalog {
-    min-height: 462px
+  .catalog__wrapper .product__row {
+    min-height: auto
   }
   .filters__btn {
     font-size: 14px

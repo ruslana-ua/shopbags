@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240526184317">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240526215830">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -186,24 +186,28 @@
 						<button type="submit" class="catalog__button filters-button _icon-filter">Фільтри</button>
 						<div data-dropdown class="catalog__sort sort">
 							<div class="sort__button-body">
-								<button type="button" data-dropdown-button class="sort__button _icon-arrow-down_2" data-value="asc">За популярністю</button>
+								<button type="button" data-dropdown-button class="sort__button _icon-arrow-down_2" data-value="asc">За замовчуванням</button>
 							</div>
 							<ul data-dropdown-list class="sort__list">
 								<li data-dropdown-item class="sort__item" data-value="asc">
-									<input id="sort-1" type="radio" value="asc" name="sort">
-									<label for="sort-1">За популярністю</label>
+									<input id="sort-1" type="radio" value="asc" name="sort" class="sort__input">
+									<label for="sort-1" class="sort__label">За замовчуванням</label>
+								</li>
+								<li data-dropdown-item class="sort__item" data-value="asc">
+									<input id="sort-2" type="radio" value="asc" name="sort" class="sort__input">
+									<label for="sort-2" class="sort__label">За популярністю</label>
 								</li>
 								<li data-dropdown-item class="sort__item" data-value="desc">
-									<input id="sort-2" type="radio" value="desc" name="sort">
-									<label for="sort-2">Спочатку дешевше</label>
+									<input id="sort-3" type="radio" value="desc" name="sort" class="sort__input">
+									<label for="sort-3" class="sort__label">Спочатку дешевше</label>
 								</li>
 								<li data-dropdown-item class="sort__item" data-value="desc">
-									<input id="sort-3" type="radio" value="desc" name="sort">
-									<label for="sort-3">Спочатку дорожче</label>
+									<input id="sort-4" type="radio" value="desc" name="sort" class="sort__input">
+									<label for="sort-4" class="sort__label">Спочатку дорожче</label>
 								</li>
 								<li data-dropdown-item class="sort__item" data-value="desc">
-									<input id="sort-4" type="radio" value="desc" name="sort">
-									<label for="sort-4">Нові</label>
+									<input id="sort-5" type="radio" value="desc" name="sort" class="sort__input">
+									<label for="sort-5" class="sort__label">Нові</label>
 								</li>
 							</ul>
 						</div>
@@ -369,8 +373,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -409,8 +412,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -449,8 +451,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -489,8 +490,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -529,8 +529,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -569,8 +568,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -592,12 +590,6 @@
 									</div>
 									<button data-popup="#popup-quick-order" type="button" class="product__buy btn">Швидке замовлення</button>
 								</div>
-							</div>
-						</div>
-						<div class="catalog__banner banner-catalog">
-							<h2 class="banner-catalog__title">Some attractive banner. Some text example</h2>
-							<div class="banner-catalog__text">
-								<p>Приклад тексту для баннеру, щось про знижки, нові колекції або певний товар</p>
 							</div>
 						</div>
 						<div class="product__wrap">
@@ -615,8 +607,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -655,8 +646,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -695,8 +685,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -735,8 +724,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -775,8 +763,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -815,8 +802,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -855,8 +841,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -895,8 +880,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -935,8 +919,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -975,8 +958,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1015,8 +997,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1055,8 +1036,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1080,12 +1060,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="catalog__banner banner-catalog">
-							<h2 class="banner-catalog__title">Some attractive banner. Some text example</h2>
-							<div class="banner-catalog__text">
-								<p>Приклад тексту для баннеру, щось про знижки, нові колекції або певний товар</p>
-							</div>
-						</div>
 						<div class="product__wrap">
 							<div class="product__inner">
 								<div class="product__label--wrap">
@@ -1101,8 +1075,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1141,8 +1114,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1181,8 +1153,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1221,8 +1192,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1261,8 +1231,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1301,8 +1270,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1341,8 +1309,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1381,8 +1348,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1421,8 +1387,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1461,8 +1426,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1501,8 +1465,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1541,8 +1504,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1581,8 +1543,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -1621,8 +1582,7 @@
 									<a href="" class="product__title">Назва Товару</a>
 									<div class="product__copy">
 										<div class="product__code--wrap">
-											<div class="product__code--text">Код: </div>
-											<div class="product__code">1533277</div>
+											<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 										</div>
 										<button type="button" class="product__icon _icon-copy"></button>
 									</div>
@@ -2182,18 +2142,18 @@
 							<div class="form__label form__label--show">Ваша оцінка*</div>
 						</div>
 						<div class="form__data">
-							<input data-error="Мінімум 2 символи" data-required="name" data-validate type="text" name="name" class="form__input">
-							<div class="form__label">Імʼя*</div>
+							<input type="text" name="name" class="form__input">
+							<div class="form__label">Імʼя</div>
 						</div>
-						<div class="form__data">
+						<div class="form__data form__data--mod">
 							<textarea class="form__textarea" name="comment" placeholder="Введіть ваш коментар"></textarea>
 							<div class="form__label form__label--show">Коментар</div>
 						</div>
-						<div class="form__data">
+						<div class="form__data form__data--mod">
 							<textarea class="form__textarea form__textarea--mod" name="advantages" placeholder="Введіть ваш коментар стосовно переваг"></textarea>
 							<div class="form__label form__label--show">Переваги</div>
 						</div>
-						<div class="form__data">
+						<div class="form__data form__data--mod">
 							<textarea class="form__textarea form__textarea--mod" name="disadvantages" placeholder="Введіть ваш коментар стосовно недоліків"></textarea>
 							<div class="form__label form__label--show">Недоліки</div>
 						</div>
@@ -2225,8 +2185,7 @@
 										<div class="details__title">Назва товару Назва товару Назва товару Назва товару Назва товару Назва товару Назва товару</div>
 										<div class="details__copy product__copy">
 											<div class="product__code--wrap">
-												<div class="product__code--text">Код: </div>
-												<div class="product__code">1533277</div>
+												<div class="product__code--text">Код: <span class="product__code">1533277</span></div>
 											</div>
 											<button type="button" class="product__icon _icon-copy"></button>
 										</div>
@@ -2249,7 +2208,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240526184317"></script>
+	<script src="js/app.min.js?_v=20240526215830"></script>
 </body>
 
 </html>
