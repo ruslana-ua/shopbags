@@ -4889,14 +4889,25 @@
             const menuInterBody = document.querySelector(".filters");
             if (document.querySelector(".filters-button")) document.addEventListener("click", (function(e) {
                 if (e.target.closest(".filters-button")) {
-                    bodyLockToggle();
+                    document.documentElement.classList.toggle("lock-filters");
                     document.documentElement.classList.toggle("menu-filters");
                 } else if (!menuInterBody.contains(e.target)) menuCloseFilters();
             }));
         }
         function menuCloseFilters() {
-            bodyUnlock();
+            document.documentElement.classList.remove("lock-filters");
             document.documentElement.classList.remove("menu-filters");
+        }
+        function menuSearch() {
+            if (document.querySelector(".button-search")) document.addEventListener("click", (function(e) {
+                if (e.target.closest(".button-search")) {
+                    document.documentElement.classList.add("lock-search");
+                    document.documentElement.classList.add("show-search");
+                } else if (e.target.closest(".button-search-close")) {
+                    document.documentElement.classList.remove("lock-search");
+                    document.documentElement.classList.remove("show-search");
+                }
+            }));
         }
         function showMore() {
             window.addEventListener("load", (function(e) {
@@ -5451,7 +5462,10 @@
                         this.addError(formRequiredItem);
                         error++;
                     } else this.removeError(formRequiredItem);
-                } else if (formRequiredItem.dataset.required === "phone") {
+                } else if (formRequiredItem.dataset.required === "comment") if (this.nameTest(formRequiredItem)) {
+                    this.addError(formRequiredItem);
+                    error++;
+                } else this.removeError(formRequiredItem); else if (formRequiredItem.dataset.required === "phone") {
                     formRequiredItem.value = formRequiredItem.value.replace(" ", "");
                     if (this.phoneTest(formRequiredItem)) {
                         this.addError(formRequiredItem);
@@ -5511,6 +5525,9 @@
             },
             nameTest(formRequiredItem) {
                 return !/[a-zA-Zа-яА-ЯА-ЩЬЮЯҐЄІЇа-щьюяґєії]{2}$/.test(formRequiredItem.value);
+            },
+            commentTest(formRequiredItem) {
+                return !/^[a-zA-Zа-яА-ЯёЁҐЄІЇґєії]{10,}$/.test(formRequiredItem.value);
             }
         };
         function formSubmit() {
@@ -11976,6 +11993,7 @@ PERFORMANCE OF THIS SOFTWARE.
         window["FLS"] = false;
         menuInit();
         menuFilters();
+        menuSearch();
         spollers();
         tabs();
         showMore();
