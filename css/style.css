@@ -437,7 +437,7 @@ textarea._form-error {
 }
 textarea {
   height: 128px;
-  padding: 0 12px 2px 0;
+  padding: 0 0 2px 0;
   resize: none
 }
 input[placeholder]:not([data-placeholder-nohiden])::-webkit-input-placeholder {
@@ -948,6 +948,20 @@ body::after {
   -webkit-transform: translateY(-20px);
   transform: translateY(-20px)
 }
+.form__data--address.hide {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  opacity: 0;
+  visibility: hidden
+}
+.form__data--department.hide {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  opacity: 0;
+  visibility: hidden
+}
 .form__data--mod {
   margin: 44px 0 24px 0
 }
@@ -1147,8 +1161,6 @@ summary::marker {
   -ms-overflow-style: none;
   box-sizing: border-box;
   margin: 0;
-  border: 0;
-  padding: 0;
   width: 100%
 }
 .baron-h__scroller::-webkit-scrollbar,
@@ -1583,10 +1595,7 @@ summary::marker {
 }
 .menu__list {
   display: flex;
-  align-items: center;
-  -webkit-column-gap: 24px;
-  -moz-column-gap: 24px;
-  column-gap: 24px
+  align-items: center
 }
 .menu__link {
   display: flex;
@@ -1596,7 +1605,7 @@ summary::marker {
   font-size: 13px;
   font-weight: 500;
   position: relative;
-  padding: 30px 0;
+  padding: 30px 24px 30px 0;
   cursor: pointer
 }
 .menu__link::after {
@@ -1616,7 +1625,7 @@ summary::marker {
   background-color: var(--black)
 }
 .menu__link.active::after {
-  width: 100%
+  width: calc(100% - 24px)
 }
 .menu__link--hover::before {
   display: flex;
@@ -2153,7 +2162,7 @@ summary::marker {
 }
 .product__copy {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   font-size: 14px;
   font-weight: 500
 }
@@ -3278,6 +3287,7 @@ summary::marker {
   width: calc(61% - 26px)
 }
 .cart__column .details__item {
+  align-items: stretch;
   padding: 24px 0;
   border-radius: 0;
   border: none;
@@ -3415,12 +3425,13 @@ summary::marker {
   width: calc(60% - 25px)
 }
 .form-order .form__sent {
-  width: -webkit-max-content;
-  width: max-content;
+  width: 100%;
+  justify-content: space-between;
   min-width: 328px
 }
 .form-order .form__sent span {
-  display: none
+  display: inline;
+  white-space: nowrap
 }
 .form-order__block {
   padding-bottom: 32px
@@ -3601,6 +3612,9 @@ summary::marker {
 }
 .order-spollers__wrapper .details__image img {
   aspect-ratio: 132/184
+}
+.order-spollers__wrapper .details__title {
+  -webkit-line-clamp: 3
 }
 .order-spollers__wrapper .details__column--last,
 .order-spollers__wrapper .details__title {
@@ -3848,12 +3862,6 @@ summary::marker {
   padding: 0;
   width: 0
 }
-.filters__checkbox:not(:checked) + .filters__label:hover {
-  color: #000
-}
-.filters__checkbox:not(:checked) + .filters__label--block:hover {
-  color: rgba(0,0,0,.6)
-}
 .filters__checkbox:checked + .filters__label::before {
   content: "\e91d";
   border: 1.5px solid var(--black);
@@ -3923,7 +3931,7 @@ summary::marker {
   align-items: center;
   justify-content: center;
   border-bottom: 1.5px solid transparent;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #000;
   transition: all .2s ease-in-out 0s
@@ -5776,14 +5784,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     padding: 0 0 64px 0
   }
   .form-order .form__sent {
-    width: 100%;
-    justify-content: space-between;
-    padding: 16px;
-    min-width: 100%
-  }
-  .form-order .form__sent span {
-    display: inline;
-    white-space: nowrap
+    padding: 16px
   }
   .info-order {
     width: 100%;
@@ -6365,7 +6366,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     opacity: .6
   }
   .menu__link:hover::after {
-    width: 100%
+    width: calc(100% - 24px)
   }
   .menu-spollers__image--title:hover {
     color: rgba(255,255,255,.6)
@@ -6406,6 +6407,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     opacity: .6
   }
   .filters__title:hover {
+    color: rgba(0,0,0,.6)
+  }
+  .filters__checkbox:not(:checked) + .filters__label:hover {
+    color: #000
+  }
+  .filters__checkbox:not(:checked) + .filters__label--block:hover {
     color: rgba(0,0,0,.6)
   }
   .filters__more:hover {

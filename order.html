@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240527123505">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240527141455">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -17,7 +17,6 @@
 		<header data-scroll="100" data-scroll-show class="header header-cart">
 			<div class="header__container">
 				<div class="header__wrapper">
-					<a href="" class="header__link--cart _icon-arrow-btn"></a>
 					<a href="" class="header__logo">Logotipo</a>
 				</div>
 			</div>
@@ -52,7 +51,11 @@
 											</select>
 											<div class="form__label">Місто*</div>
 										</div>
-										<div class="form__data">
+										<div class="form__data form__data--address hide">
+											<input data-error="Поле є обовʼязковим для заповнення" data-required="name" data-validate type="text" name="name" class="form__input">
+											<div class="form__label">Введіть адресу доставки*</div>
+										</div>
+										<div class="form__data form__data--department">
 											<select data-error="Поле є обовʼязковим для заповнення" data-required data-validate name="form[]" data-class-modif="form">
 												<option value="" disabled selected hidden></option>
 												<option value="1">Пункт №1</option>
@@ -95,11 +98,11 @@
 									</div>
 								</div>
 								<div class="form__sent--wrap">
-									<button type="submit" class="form__sent btn">Оформити замовлення <span>803 ₴</span></button>
+									<button type="submit" class="form__sent btn">Оформити замовлення <span>2400 ₴</span></button>
 								</div>
 							</form>
 							<div class="order__info info-order">
-								<div data-spollers data-one-spoller class="info-order__spollers order-spollers">
+								<div data-spollers class="info-order__spollers order-spollers">
 									<details class="order-spollers__item">
 										<summary class="order-spollers__title _icon-arrow-down_2">
 											<div class="order-spollers__button">Промокод</div>
@@ -232,7 +235,7 @@
 									</li>
 									<li class="total__item">
 										<div class="total__info">
-											<span>Разом</span>
+											<span>До сплати</span>
 										</div>
 										<div class="total__data">2400 ₴</div>
 									</li>
@@ -244,7 +247,7 @@
 			</section>
 		</main>
 	</div>
-	<script src="js/app.min.js?_v=20240527123505"></script>
+	<script src="js/app.min.js?_v=20240527141455"></script>
 </body>
 
 </html>

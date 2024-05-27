@@ -5462,7 +5462,7 @@
                         this.addError(formRequiredItem);
                         error++;
                     } else this.removeError(formRequiredItem);
-                } else if (formRequiredItem.dataset.required === "comment") if (this.nameTest(formRequiredItem)) {
+                } else if (formRequiredItem.dataset.required === "comment") if (this.commentTest(formRequiredItem)) {
                     this.addError(formRequiredItem);
                     error++;
                 } else this.removeError(formRequiredItem); else if (formRequiredItem.dataset.required === "phone") {
@@ -5471,7 +5471,7 @@
                         this.addError(formRequiredItem);
                         error++;
                     } else this.removeError(formRequiredItem);
-                } else if (formRequiredItem.type === "checkbox" && !formRequiredItem.checked) {
+                } else if (formRequiredItem.type === "radio" && !formRequiredItem.checked) {
                     this.addError(formRequiredItem);
                     error++;
                 } else if (!formRequiredItem.value.trim()) {
@@ -5492,6 +5492,10 @@
                 formRequiredItem.parentElement.classList.remove("_form-error");
                 var errorElement = formRequiredItem.parentElement.querySelector(".form__error");
                 if (errorElement && formRequiredItem.parentElement.contains(errorElement)) formRequiredItem.parentElement.removeChild(errorElement);
+            },
+            radioGroupChecked(formRequiredItem) {
+                let radioGroup = document.querySelectorAll(`input[type="radio"][name="${formRequiredItem.name}"]`);
+                return Array.from(radioGroup).some((radio => radio.checked));
             },
             formClean(form) {
                 form.reset();
@@ -5527,7 +5531,7 @@
                 return !/[a-zA-Zа-яА-ЯА-ЩЬЮЯҐЄІЇа-щьюяґєії]{2}$/.test(formRequiredItem.value);
             },
             commentTest(formRequiredItem) {
-                return !/^[a-zA-Zа-яА-ЯёЁҐЄІЇґєії]{10,}$/.test(formRequiredItem.value);
+                return !/^.{10,}$/.test(formRequiredItem.value);
             }
         };
         function formSubmit() {
@@ -12021,6 +12025,25 @@ PERFORMANCE OF THIS SOFTWARE.
                     dropDownList.classList.remove("dropdown__list--visible");
                 }
             }));
+        }));
+        const formOrderBlock = document.querySelector(".form-order__block");
+        if (formOrderBlock) document.addEventListener("DOMContentLoaded", (function() {
+            const type1 = document.getElementById("type-1");
+            const type2 = document.getElementById("type-2");
+            const addressField = document.querySelector(".form__data--address");
+            const departmentField = document.querySelector(".form__data--department");
+            function toggleFields() {
+                if (type1.checked) {
+                    addressField.classList.add("hide");
+                    departmentField.classList.remove("hide");
+                } else if (type2.checked) {
+                    addressField.classList.remove("hide");
+                    departmentField.classList.add("hide");
+                }
+            }
+            type1.addEventListener("change", toggleFields);
+            type2.addEventListener("change", toggleFields);
+            toggleFields();
         }));
         window["FLS"] = false;
         menuInit();
