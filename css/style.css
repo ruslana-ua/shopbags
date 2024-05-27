@@ -395,7 +395,7 @@ textarea {
   font-weight: 500;
   line-height: 21px;
   background-color: var(--wh);
-  border-bottom: 1px solid rgba(0,0,0,.42);
+  border-bottom: 1px solid rgba(0,0,0,.42)!important;
   transition: all .2s ease-in-out
 }
 input::-webkit-input-placeholder,
@@ -416,28 +416,28 @@ textarea::placeholder {
 }
 input:hover,
 textarea:hover {
-  border-bottom: 1px solid rgba(0,0,0,.3)
+  border-bottom: 1px solid rgba(0,0,0,.3)!important
 }
 input:focus,
 textarea:focus {
-  border-bottom: 1px solid var(--bg-secondary)
+  border-bottom: 1px solid var(--bg-secondary)!important
 }
 ._form-valid input,
 ._form-valid textarea {
-  border-bottom: 1px solid var(--bg-secondary)
+  border-bottom: 1px solid var(--bg-secondary)!important
 }
 input:disabled,
 textarea:disabled {
-  border-bottom: 1px solid #636363;
+  border-bottom: 1px solid #636363!important;
   pointer-events: none
 }
 input._form-error,
 textarea._form-error {
-  border-bottom: 1px solid var(--error)
+  border-bottom: 1px solid var(--error)!important
 }
 textarea {
   height: 128px;
-  padding: 0 0 2px 0;
+  padding: 0 12px 2px 0;
   resize: none
 }
 input[placeholder]:not([data-placeholder-nohiden])::-webkit-input-placeholder {
@@ -1120,14 +1120,17 @@ summary::marker {
 .tabs__body p:not(:last-child) {
   margin: 0 0 8px 0
 }
+.tabs__scroller {
+  max-height: 482px;
+  padding: 0 12px 0 0!important
+}
 .baron,
 .baron-h {
   position: relative;
   overflow: hidden
 }
 .baron {
-  overflow-y: auto;
-  overflow-x: none
+  overflow-y: auto
 }
 .baron-h__scroller {
   overflow-x: scroll;
@@ -1146,8 +1149,7 @@ summary::marker {
   margin: 0;
   border: 0;
   padding: 0;
-  width: 100%;
-  height: 100%
+  width: 100%
 }
 .baron-h__scroller::-webkit-scrollbar,
 .baron__scroller::-webkit-scrollbar {
@@ -2485,7 +2487,9 @@ summary::marker {
 }
 .reviews__text {
   font-size: 20px;
-  line-height: 34px
+  line-height: 34px;
+  max-height: 136px;
+  padding-right: 8px
 }
 .reviews__swiper-button {
   position: absolute;
@@ -2808,7 +2812,9 @@ summary::marker {
   font-size: 14px
 }
 .product-reviews__comment {
-  line-height: 24px
+  line-height: 24px;
+  max-height: 48px;
+  padding-right: 8px
 }
 .product-reviews__bottom {
   padding: 24px 0 0 0;
@@ -2832,9 +2838,7 @@ summary::marker {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-column-gap: 32px;
-  -moz-column-gap: 32px;
-  column-gap: 32px;
+  gap: 32px;
   padding: 32px 0 0 0
 }
 .product-reviews__label {
@@ -2852,6 +2856,7 @@ summary::marker {
   background-color: rgba(0,0,0,.3)
 }
 .product-reviews__button {
+  text-align: center;
   color: var(--bg-accent);
   position: relative;
   font-weight: 500;
@@ -3625,7 +3630,18 @@ summary::marker {
   column-gap: 12px;
   font-weight: 500;
   padding: 10px 12px;
+  background: #fff;
   border: 1px solid rgba(0,0,0,.18);
+  transition: all .2s ease-in-out 0s;
+  z-index: 7
+}
+._aside-scroll .catalog__button {
+  position: fixed;
+  top: 24px;
+  transition: top .5s ease 0s
+}
+._aside-show .catalog__button {
+  top: 80px;
   transition: all .2s ease-in-out 0s
 }
 .catalog__button::before {
@@ -3802,13 +3818,14 @@ summary::marker {
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  width: 12px;
-  height: 12px
+  width: 25px;
+  height: 20px;
+  margin-bottom: 9px
 }
 .filters__title span {
   font-weight: 600;
   line-height: 24px;
-  padding-bottom: 12px;
+  padding-bottom: 9px;
   border-bottom: 2px solid #000;
   margin: 0 0 -1px 0
 }
@@ -3824,31 +3841,38 @@ summary::marker {
   align-items: center
 }
 .filters__data:not(:last-child) {
-  margin: 0 0 10px 0
+  margin: 0 0 14px 0
 }
 .filters__checkbox {
   display: none;
   padding: 0;
   width: 0
 }
-.filters__checkbox:not(:checked) + .filters__label .filters__label--text:hover,
-.filters__checkbox:not(:checked) + .filters__label--block .filters__label--text:hover {
-  opacity: .5
+.filters__checkbox:not(:checked) + .filters__label:hover {
+  color: #000
+}
+.filters__checkbox:not(:checked) + .filters__label--block:hover {
+  color: rgba(0,0,0,.6)
 }
 .filters__checkbox:checked + .filters__label::before {
   content: "\e91d";
-  border-radius: 3.333px;
-  border: 1px solid var(--black);
+  border: 1.5px solid var(--black);
   background: var(--black)
 }
 .filters__checkbox:checked + .filters__label--block {
-  border-bottom: 1.5px solid var(--black)
+  border-bottom: 1.5px solid var(--black);
+  text-shadow: .2px 0 0 var(--black)
 }
 .filters__label {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  color: rgba(0,0,0,.6);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  transition: all .2s ease-in-out 0s
 }
 .filters__label::before {
   content: "";
@@ -3861,10 +3885,10 @@ summary::marker {
   border-radius: 2.5px;
   font-size: 8px;
   color: var(--wh);
-  border: 1px solid #ababab;
+  border: 1.5px solid rgba(1,1,1,.33);
   background: var(--wh);
   transition: all .2s ease-in-out;
-  margin: 0 10.5px 0 1.5px;
+  margin: 0 12.5px 0 2px;
   padding: 0 0 0 1px
 }
 .filters__color--wrap {
@@ -3898,7 +3922,11 @@ summary::marker {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1.5px solid transparent
+  border-bottom: 1.5px solid transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  transition: all .2s ease-in-out 0s
 }
 .filters__bottom {
   display: flex;
@@ -3918,6 +3946,45 @@ summary::marker {
 .filters__btn {
   width: calc(50% - 4px);
   padding: 4px
+}
+.filters__more {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  margin: 16px auto 0 auto;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 0;
+  transition: all .2s ease-in-out 0s
+}
+.filters__more span {
+  position: relative
+}
+.filters__more span::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--black)
+}
+.filters__more::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5px;
+  height: 4px;
+  font-size: 10px;
+  margin-left: 10px;
+  transition: all .2s ease-in-out 0s
+}
+._showmore-active .filters__more::before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg)
 }
 .pagination {
   display: flex;
@@ -3966,12 +4033,10 @@ summary::marker {
 .content {
   padding: 60px 0 62px 0
 }
-.content__wrapper {
-  height: 148px
-}
 .content__body {
   padding: 0 20px 0 0;
-  opacity: .8
+  opacity: .8;
+  max-height: 148px
 }
 .content__body ol:not(:last-child),
 .content__body p:not(:last-child),
@@ -5240,11 +5305,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     font-weight: 500;
     line-height: 30px
   }
-  .tabs__baron {
-    height: 392px
-  }
   .tabs__scroller {
-    padding: 0 12px 0 0!important
+    max-height: 392px
   }
   .header {
     height: 59px;
@@ -5639,6 +5701,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .product-reviews {
     padding: 32px 0 64px 0
   }
+  .product-reviews__comment {
+    max-height: 72px
+  }
   .content-page__wrapper {
     max-width: 630px
   }
@@ -5943,7 +6008,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .reviews__text {
     font-size: 16px;
     font-weight: 500;
-    line-height: 30px
+    line-height: 30px;
+    max-height: 180px
   }
   .breadcrumb__list {
     padding: 10px 16px 10px 0
@@ -5979,6 +6045,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .product-reviews__title {
     padding-bottom: 24px
+  }
+  .product-reviews__comment {
+    max-height: 192px
   }
   .content-page {
     padding-bottom: 30px
@@ -6163,8 +6232,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .content {
     padding: 40px 0 32px 0
   }
-  .content__wrapper {
-    height: 228px
+  .content__body {
+    max-height: 228px
   }
   .footer__logo {
     font-size: 30.692px
@@ -6233,6 +6302,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
 }
 @media (max-width:22.49875em) {
+  .product-reviews__row {
+    flex-direction: column
+  }
   .details__bottom--cart {
     flex-direction: column;
     align-items: flex-start;
@@ -6324,6 +6396,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .order-spollers__title:hover {
     color: rgba(0,0,0,.6)
   }
+  ._aside-show .catalog__button:hover {
+    background: rgba(255,255,255,.9)
+  }
   .catalog__button:hover {
     background: rgba(0,0,0,.02)
   }
@@ -6332,6 +6407,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .filters__title:hover {
     color: rgba(0,0,0,.6)
+  }
+  .filters__more:hover {
+    opacity: .6
   }
 }
 @media (any-hover:none) {

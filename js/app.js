@@ -9942,7 +9942,7 @@
                     }
                 });
                 var galleryMain = new swiper_core_Swiper(".gallery__slider", {
-                    modules: [ Thumb, EffectFade ],
+                    modules: [ Navigation, Thumb, EffectFade ],
                     watchOverflow: true,
                     watchSlidesVisibility: true,
                     watchSlidesProgress: true,
@@ -9950,6 +9950,10 @@
                     effect: "fade",
                     fadeEffect: {
                         crossFade: true
+                    },
+                    navigation: {
+                        prevEl: ".breadcrumb__product--modrev",
+                        nextEl: ".breadcrumb__product--next"
                     },
                     thumbs: {
                         swiper: galleryThumbs
@@ -10009,6 +10013,34 @@
                 }
                 scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
             }));
+        }
+        function asideScroll() {
+            addWindowScrollEvent = true;
+            const header = document.querySelector(".catalog__head");
+            if (header) {
+                const headerShow = header.hasAttribute("data-scroll-show");
+                const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+                const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+                let scrollDirection = 0;
+                let timer;
+                document.addEventListener("windowScroll", (function(e) {
+                    const scrollTop = window.scrollY;
+                    clearTimeout(timer);
+                    if (scrollTop >= startPoint) {
+                        !header.classList.contains("_aside-scroll") ? header.classList.add("_aside-scroll") : null;
+                        if (headerShow) {
+                            if (scrollTop > scrollDirection) header.classList.contains("_aside-show") ? header.classList.remove("_aside-show") : null; else !header.classList.contains("_header-show") ? header.classList.add("_aside-show") : null;
+                            timer = setTimeout((() => {
+                                !header.classList.contains("_aside-show") ? header.classList.add("_aside-show") : null;
+                            }), headerShowTimer);
+                        }
+                    } else {
+                        header.classList.contains("_aside-scroll") ? header.classList.remove("_aside-scroll") : null;
+                        if (headerShow) header.classList.contains("_aside-show") ? header.classList.remove("_aside-show") : null;
+                    }
+                    scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+                }));
+            }
         }
         setTimeout((() => {
             if (addWindowScrollEvent) {
@@ -12003,5 +12035,6 @@ PERFORMANCE OF THIS SOFTWARE.
         });
         formSubmit();
         headerScroll();
+        asideScroll();
     })();
 })();

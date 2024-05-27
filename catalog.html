@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240526221138">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240527123505">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -182,7 +182,7 @@
 			</section>
 			<section class="catalog">
 				<div class="catalog__container">
-					<div class="catalog__head">
+					<div data-scroll="120" data-scroll-show class="catalog__head">
 						<button type="submit" class="catalog__button filters-button _icon-filter">Фільтри</button>
 						<div data-dropdown class="catalog__sort sort">
 							<div class="sort__button-body">
@@ -229,31 +229,87 @@
 									<details data-open class="filters__details">
 										<summary class="filters__title _icon-arrow-down_2"><span>Категорія</span></summary>
 										<div class="filters__body">
-											<div class="filters__inner">
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="filter-1" name="filter_1">
-													<label class="filters__label" for="filter-1">
-														<div class="filters__label--text">Категорія 1</div>
-													</label>
+											<div data-showmore="items" class="filters__showmore">
+												<div data-showmore-content="4" class="filters__showmore--content">
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-1" name="filter_1">
+														<label class="filters__label" for="filter-1">
+															<div class="filters__label--text">Категорія 1</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-2" name="filter_1">
+														<label class="filters__label" for="filter-2">
+															<div class="filters__label--text">Категорія 2</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-3" name="filter_1">
+														<label class="filters__label" for="filter-3">
+															<div class="filters__label--text">Категорія 3</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-4" name="filter_1">
+														<label class="filters__label" for="filter-4">
+															<div class="filters__label--text">Категорія 4</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-5" name="filter_1">
+														<label class="filters__label" for="filter-5">
+															<div class="filters__label--text">Категорія 1</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-6" name="filter_1">
+														<label class="filters__label" for="filter-6">
+															<div class="filters__label--text">Категорія 2</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-7" name="filter_1">
+														<label class="filters__label" for="filter-7">
+															<div class="filters__label--text">Категорія 3</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-8" name="filter_1">
+														<label class="filters__label" for="filter-8">
+															<div class="filters__label--text">Категорія 4</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-9" name="filter_1">
+														<label class="filters__label" for="filter-9">
+															<div class="filters__label--text">Категорія 1</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-10" name="filter_1">
+														<label class="filters__label" for="filter-10">
+															<div class="filters__label--text">Категорія 2</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-11" name="filter_1">
+														<label class="filters__label" for="filter-11">
+															<div class="filters__label--text">Категорія 3</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="filter-12" name="filter_1">
+														<label class="filters__label" for="filter-12">
+															<div class="filters__label--text">Категорія 4</div>
+														</label>
+													</div>
 												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="filter-2" name="filter_1">
-													<label class="filters__label" for="filter-2">
-														<div class="filters__label--text">Категорія 2</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="filter-3" name="filter_1">
-													<label class="filters__label" for="filter-3">
-														<div class="filters__label--text">Категорія 3</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="filter-4" name="filter_1">
-													<label class="filters__label" for="filter-4">
-														<div class="filters__label--text">Категорія 4</div>
-													</label>
-												</div>
+												<button data-showmore-button type="button" class="filters__button--more">
+													<div class="filters__more _icon-arrow">
+														<span>Показати більше</span>
+														<span>Сховати</span>
+													</div>
+												</button>
 											</div>
 										</div>
 									</details>
@@ -291,69 +347,131 @@
 									<details data-open class="filters__details">
 										<summary class="filters__title _icon-arrow-down_2"><span>Колір</span></summary>
 										<div class="filters__body">
-											<div class="filters__inner">
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-1" name="color">
-													<label class="filters__label" for="color-1">
-														<div class="filters__color--wrap">
-															<div style="background: yellow;" class="filters__color"></div>
-															<div class="filters__label--text">Жовтий <span>(10)</span></div>
-														</div>
-													</label>
+											<div data-showmore="items" class="filters__showmore">
+												<div data-showmore-content="4" class="filters__showmore--content">
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-1" name="color">
+														<label class="filters__label" for="color-1">
+															<div class="filters__color--wrap">
+																<div style="background: yellow;" class="filters__color"></div>
+																<div class="filters__label--text">Жовтий <span>(10)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-2" name="color">
+														<label class="filters__label" for="color-2">
+															<div class="filters__color--wrap">
+																<div style="background: lightblue;" class="filters__color"></div>
+																<div class="filters__label--text">Блакитний <span>(14)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-3" name="color">
+														<label class="filters__label" for="color-3">
+															<div class="filters__color--wrap">
+																<div style="background: beige;" class="filters__color"></div>
+																<div class="filters__label--text">Бежевий<span>(80)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-4" name="color">
+														<label class="filters__label" for="color-4">
+															<div class="filters__color--wrap">
+																<div style="background: white;" class="filters__color"></div>
+																<div class="filters__label--text">Білий <span>(10)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-5" name="color">
+														<label class="filters__label" for="color-5">
+															<div class="filters__color--wrap">
+																<div style="background: gray;" class="filters__color"></div>
+																<div class="filters__label--text">Сірий <span>(25)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-6" name="color">
+														<label class="filters__label" for="color-6">
+															<div class="filters__color--wrap">
+																<div style="background: brown;" class="filters__color"></div>
+																<div class="filters__label--text">Коричневий <span>(5)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-7" name="color">
+														<label class="filters__label" for="color-7">
+															<div class="filters__color--wrap">
+																<div style="background: yellow;" class="filters__color"></div>
+																<div class="filters__label--text">Жовтий <span>(10)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-8" name="color">
+														<label class="filters__label" for="color-8">
+															<div class="filters__color--wrap">
+																<div style="background: lightblue;" class="filters__color"></div>
+																<div class="filters__label--text">Блакитний <span>(14)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-9" name="color">
+														<label class="filters__label" for="color-9">
+															<div class="filters__color--wrap">
+																<div style="background: beige;" class="filters__color"></div>
+																<div class="filters__label--text">Бежевий<span>(80)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-10" name="color">
+														<label class="filters__label" for="color-10">
+															<div class="filters__color--wrap">
+																<div style="background: white;" class="filters__color"></div>
+																<div class="filters__label--text">Білий <span>(10)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-11" name="color">
+														<label class="filters__label" for="color-11">
+															<div class="filters__color--wrap">
+																<div style="background: gray;" class="filters__color"></div>
+																<div class="filters__label--text">Сірий <span>(25)</span></div>
+															</div>
+														</label>
+													</div>
+													<div class="filters__data">
+														<input class="filters__checkbox" type="checkbox" id="color-12" name="color">
+														<label class="filters__label" for="color-12">
+															<div class="filters__color--wrap">
+																<div style="background: brown;" class="filters__color"></div>
+																<div class="filters__label--text">Коричневий <span>(5)</span></div>
+															</div>
+														</label>
+													</div>
 												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-2" name="color">
-													<label class="filters__label" for="color-2">
-														<div class="filters__color--wrap">
-															<div style="background: lightblue;" class="filters__color"></div>
-															<div class="filters__label--text">Блакитний <span>(14)</span></div>
-														</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-3" name="color">
-													<label class="filters__label" for="color-3">
-														<div class="filters__color--wrap">
-															<div style="background: beige;" class="filters__color"></div>
-															<div class="filters__label--text">Бежевий<span>(80)</span></div>
-														</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-4" name="color">
-													<label class="filters__label" for="color-4">
-														<div class="filters__color--wrap">
-															<div style="background: white;" class="filters__color"></div>
-															<div class="filters__label--text">Білий <span>(10)</span></div>
-														</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-5" name="color">
-													<label class="filters__label" for="color-5">
-														<div class="filters__color--wrap">
-															<div style="background: gray;" class="filters__color"></div>
-															<div class="filters__label--text">Сірий <span>(25)</span></div>
-														</div>
-													</label>
-												</div>
-												<div class="filters__data">
-													<input class="filters__checkbox" type="checkbox" id="color-6" name="color">
-													<label class="filters__label" for="color-6">
-														<div class="filters__color--wrap">
-															<div style="background: brown;" class="filters__color"></div>
-															<div class="filters__label--text">Коричневий <span>(5)</span></div>
-														</div>
-													</label>
-												</div>
+												<button data-showmore-button type="button" class="filters__button--more">
+													<div class="filters__more _icon-arrow">
+														<span>Показати більше</span>
+														<span>Сховати</span>
+													</div>
+												</button>
 											</div>
 										</div>
 									</details>
 								</div>
 							</div>
 							<div class="filters__bottom">
-								<button type="button" class="filters__btn btn btn_wh">Очистити всі</button>
-								<button type="button" class="filters__btn btn">Дивитись 45 товарів</button>
+								<button type="button" class="filters__btn btn btn_wh disabled">Очистити всі</button>
+								<button type="button" class="filters__btn btn disabled">Дивитись 45 товарів</button>
 							</div>
 						</div>
 					</div>
@@ -2139,15 +2257,30 @@
 							<div class="form__label">Імʼя</div>
 						</div>
 						<div class="form__data form__data--mod">
-							<textarea class="form__textarea" name="comment" placeholder="Введіть ваш коментар"></textarea>
+							<div class="form__baron baron">
+								<textarea class="form__textarea baron__scroller" name="comment" placeholder="Введіть ваш коментар"></textarea>
+								<div class="baron__track">
+									<div class="baron__bar"></div>
+								</div>
+							</div>
 							<div class="form__label form__label--show">Коментар</div>
 						</div>
 						<div class="form__data form__data--mod">
-							<textarea class="form__textarea form__textarea--mod" name="advantages" placeholder="Введіть ваш коментар стосовно переваг"></textarea>
+							<div class="form__baron baron">
+								<textarea class="form__textarea form__textarea--mod baron__scroller" name="advantages" placeholder="Введіть ваш коментар стосовно переваг"></textarea>
+								<div class="baron__track">
+									<div class="baron__bar"></div>
+								</div>
+							</div>
 							<div class="form__label form__label--show">Переваги</div>
 						</div>
 						<div class="form__data form__data--mod">
-							<textarea class="form__textarea form__textarea--mod" name="disadvantages" placeholder="Введіть ваш коментар стосовно недоліків"></textarea>
+							<div class="form__baron baron">
+								<textarea class="form__textarea form__textarea--mod baron__scroller" name="disadvantages" placeholder="Введіть ваш коментар стосовно недоліків"></textarea>
+								<div class="baron__track">
+									<div class="baron__bar"></div>
+								</div>
+							</div>
 							<div class="form__label form__label--show">Недоліки</div>
 						</div>
 					</div>
@@ -2201,7 +2334,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240526221138"></script>
+	<script src="js/app.min.js?_v=20240527123505"></script>
 </body>
 
 </html>
