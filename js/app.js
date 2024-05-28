@@ -12055,6 +12055,23 @@ PERFORMANCE OF THIS SOFTWARE.
             type2.addEventListener("change", toggleFields);
             toggleFields();
         }));
+        const popupFeedback = document.getElementById("popup-feedback");
+        if (popupFeedback) document.addEventListener("DOMContentLoaded", (function() {
+            const formStarRating = document.querySelector(".form__star-rating");
+            function simulateSwipeUp(element) {
+                element.scrollBy({
+                    top: -window.innerHeight / 2.5,
+                    left: 0,
+                    behavior: "smooth"
+                });
+            }
+            const observer = new MutationObserver((function(mutationsList) {
+                for (const mutation of mutationsList) if (mutation.type === "attributes" && mutation.attributeName === "class") if (formStarRating.classList.contains("_form-error")) simulateSwipeUp(popupFeedback);
+            }));
+            observer.observe(formStarRating, {
+                attributes: true
+            });
+        }));
         window["FLS"] = false;
         menuInit();
         menuFilters();
