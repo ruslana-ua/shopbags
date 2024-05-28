@@ -9930,37 +9930,23 @@
                     }
                 }
             });
-            var gallerySlider = document.querySelector(".gallery__slider");
-            if (gallerySlider) {
-                var galleryThumbs = new swiper_core_Swiper(".gallery__thumbs", {
-                    slidesPerView: 5,
-                    watchOverflow: true,
-                    spaceBetween: 11,
-                    breakpoints: {
-                        0: {
-                            direction: "horizontal"
-                        },
-                        992: {
-                            direction: "vertical"
-                        }
-                    }
-                });
-                var galleryMain = new swiper_core_Swiper(".gallery__slider", {
+            var galleryMain;
+            var galleryThumbs;
+            function initSwipers() {
+                if (galleryMain) galleryMain.destroy(true, true);
+                if (galleryThumbs) {
+                    galleryThumbs.destroy(true, true);
+                    galleryThumbs = null;
+                }
+                let swiperParams = {
                     modules: [ Navigation, Thumb, EffectFade ],
                     watchOverflow: true,
                     watchSlidesVisibility: true,
                     watchSlidesProgress: true,
                     preventInteractionOnTransition: true,
-                    effect: "fade",
-                    fadeEffect: {
-                        crossFade: true
-                    },
                     navigation: {
-                        prevEl: ".breadcrumb__product--modrev",
+                        prevEl: ".breadcrumb__product--prev",
                         nextEl: ".breadcrumb__product--next"
-                    },
-                    thumbs: {
-                        swiper: galleryThumbs
                     },
                     on: {
                         init: function(swiper) {
@@ -9968,19 +9954,43 @@
                             const allSlidesItems = document.querySelectorAll(".gallery__slide--mob:not(.swiper-slide-duplicate)");
                             allSlides.innerHTML = allSlidesItems.length;
                         },
-                        slideChange: function(swiper) {
+                        transitionEnd: function(swiper) {
                             const currentSlide = document.querySelector(".gallery__fraction--current");
                             currentSlide.innerHTML = swiper.realIndex + 1;
                         }
                     }
-                });
-                galleryMain.on("slideChangeTransitionStart", (function() {
-                    galleryThumbs.slideTo(galleryMain.activeIndex);
-                }));
-                galleryThumbs.on("transitionStart", (function() {
-                    galleryMain.slideTo(galleryThumbs.activeIndex);
-                }));
+                };
+                if (window.innerWidth >= 992) {
+                    galleryThumbs = new swiper_core_Swiper(".gallery__thumbs", {
+                        slidesPerView: 5,
+                        watchOverflow: true,
+                        spaceBetween: 11,
+                        direction: "vertical"
+                    });
+                    swiperParams.thumbs = {
+                        swiper: galleryThumbs
+                    };
+                    swiperParams.slidesPerView = 1;
+                    swiperParams.spaceBetween = 16;
+                    swiperParams.effect = "fade";
+                    swiperParams.fadeEffect = {
+                        crossFade: true
+                    };
+                } else if (window.innerWidth >= 480) {
+                    swiperParams.slidesPerView = 1;
+                    swiperParams.spaceBetween = 16;
+                    swiperParams.effect = "slide";
+                } else {
+                    swiperParams.slidesPerView = 1.1;
+                    swiperParams.spaceBetween = 16;
+                    swiperParams.effect = "slide";
+                }
+                galleryMain = new swiper_core_Swiper(".gallery__slider", swiperParams);
             }
+            initSwipers();
+            window.addEventListener("resize", (function() {
+                initSwipers();
+            }));
         }
         window.addEventListener("load", (function(e) {
             initSliders();
