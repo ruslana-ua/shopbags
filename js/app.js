@@ -5471,13 +5471,18 @@
                         this.addError(formRequiredItem);
                         error++;
                     } else this.removeError(formRequiredItem);
-                } else if (formRequiredItem.type === "radio" && !formRequiredItem.checked) {
-                    this.addError(formRequiredItem);
-                    error++;
-                } else if (!formRequiredItem.value.trim()) {
-                    this.addError(formRequiredItem);
-                    error++;
-                } else this.removeError(formRequiredItem);
+                } else if (formRequiredItem.type === "radio") {
+                    const radioInputs = document.querySelectorAll(`input[type="radio"][name="${formRequiredItem.name}"]`);
+                    let radioChecked = false;
+                    for (let i = 0; i < radioInputs.length; i++) if (radioInputs[i].checked) {
+                        radioChecked = true;
+                        break;
+                    }
+                    if (!radioChecked) {
+                        this.addError(formRequiredItem);
+                        error++;
+                    } else this.removeError(formRequiredItem);
+                }
                 return error;
             },
             addError(formRequiredItem) {
@@ -5491,11 +5496,7 @@
                 formRequiredItem.classList.remove("_form-error");
                 formRequiredItem.parentElement.classList.remove("_form-error");
                 var errorElement = formRequiredItem.parentElement.querySelector(".form__error");
-                if (errorElement && formRequiredItem.parentElement.contains(errorElement)) formRequiredItem.parentElement.removeChild(errorElement);
-            },
-            radioGroupChecked(formRequiredItem) {
-                let radioGroup = document.querySelectorAll(`input[type="radio"][name="${formRequiredItem.name}"]`);
-                return Array.from(radioGroup).some((radio => radio.checked));
+                if (errorElement && errorElement.parentElement === formRequiredItem.parentElement) formRequiredItem.parentElement.removeChild(errorElement);
             },
             formClean(form) {
                 form.reset();
@@ -12060,7 +12061,7 @@ PERFORMANCE OF THIS SOFTWARE.
             const formStarRating = document.querySelector(".form__star-rating");
             function simulateSwipeUp(element) {
                 element.scrollBy({
-                    top: -window.innerHeight / 2.5,
+                    top: -window.innerHeight / 3,
                     left: 0,
                     behavior: "smooth"
                 });
